@@ -1,5 +1,7 @@
 # kata-operator
 
+Supported on Power systems RHEL and Ubuntu
+
 Deployment:
 
 kubectl create -f deploy/service_account.yaml
