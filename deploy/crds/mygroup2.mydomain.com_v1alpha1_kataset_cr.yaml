@@ -1,0 +1,7 @@
+apiVersion: mygroup2.mydomain.com/v1alpha1
+kind: KataSet
+metadata:
+  name: example-kataset
+spec:
+  # Add fields here
+  size: 3

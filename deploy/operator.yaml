@@ -1,0 +1,39 @@
+kind: RuntimeClass
+apiVersion: node.k8s.io/v1beta1
+metadata:
+    name: kata-containers
+handler: kata
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kata-operator
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: kata-operator
+  template:
+    metadata:
+      labels:
+        name: kata-operator
+    spec:
+      serviceAccountName: kata-operator
+      containers:
+        - name: kata-operator
+          # Replace this with the built image name
+          image: sowjarao/kata-operator
+          command:
+          - kata-operator
+          imagePullPolicy: Always
+          env:
+            - name: WATCH_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: OPERATOR_NAME
+              value: "kata-operator"
