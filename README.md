@@ -1,5 +1,4 @@
 # kata-operator
-kata-operator
 
 Deployment:
 
